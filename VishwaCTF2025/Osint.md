@@ -7,6 +7,8 @@ Flag on cybercell_viit's Instagram
 VishwaCTF{L3t_Th3_hUn7_8Eg1n}
 ```
 
+---
+
 # **Stadium!!**
 
 After searching for the image on Google, I identified it as **Saling Cricket Stadium**, but entering that name was incorrect. So, I searched for it on Google Maps and found its full name:  
@@ -17,6 +19,8 @@ After searching for the image on Google, I identified it as **Saling Cricket Sta
 VishwaCTF{Saling_Cricket_Stadium_Ghanche}
 ```
 
+---
+
 # **The Summit**
 
 ### **Challenge Breakdown**
@@ -24,8 +28,6 @@ VishwaCTF{Saling_Cricket_Stadium_Ghanche}
 - The flag format was:  
   **VishwaCTF{xx.xx,xx.xx_FirstName LastName}**  
   where `xx.xx,xx.xx` are the **latitude and longitude** coordinates, and `FirstName LastName` is the **name of a notable guest**.
-
----
 
 ## **Step 1: Identifying the Event**
 The key clues in the challenge description were:
@@ -41,8 +43,6 @@ Sources:
 - Social media posts and news articles confirmed this event was **significant** and widely covered.
 - Further searches revealed that **Devendra Fadnavis**, Maharashtra’s **Deputy Chief Minister**, attended this event.
 
----
-
 ## **Step 2: Finding the Exact Location**
 After identifying the event, the next step was to **find its exact location**.
 
@@ -55,8 +55,6 @@ To get the precise coordinates, I searched:
 - **"Royal Western India Turf Club Pune coordinates"**  
 - Verified results showed approximate latitude and longitude as:
   - **18.51° N, 73.89° E**
-
----
 
 ## **Step 3: Constructing the Flag**
 Based on the flag format, I now had:
