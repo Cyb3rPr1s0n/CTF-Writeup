@@ -45,3 +45,11 @@ VishwaCTF{this_is_first_part_this_second_part}
 ```
 VishwaCTF{b3l1ef_in_r3g_p0wer}
 ```
+
+## Whispers
+
+![ảnh](https://github.com/user-attachments/assets/c8619195-2a37-42ef-af3e-bb68e8452d49)
+
+### Solution
+
+
