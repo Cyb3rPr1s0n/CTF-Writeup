@@ -4,7 +4,7 @@
 
 I downloaded the file and found that it was a Minecraft map. Upon entering the map, I discovered that barrels filled the area from XYZ coordinates (0,0,0) to (60,60,60).
 
-![Image](images/2025-03-10_22.36.05.png)
+![Image](images/04.png)
 
 Each barrel either contained coal or was empty.
 ```
