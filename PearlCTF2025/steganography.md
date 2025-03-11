@@ -1,3 +1,11 @@
+# Stegano_ellipto_graphy
+![Images](image.png)
+
+When checking the "hakced" folder, I found three files: `key`, `output.png`, and `encrypt.py`. I assumed that the **png** file had been encrypted using `encrypt.py` and the `key` file.
+
+I used the following script:
+
+```py
 import argparse
 import hashlib
 import os
@@ -140,3 +148,15 @@ def main():
 
 if __name__ == "__main__":
     main()
+```
+
+Running it:
+```powershell
+python .\decrypt.py extract out.png -k 6558684506371667866903020874921700400259832463896378794735041574848246323110
+Extracted message: pearl{babe_he's_not_home_U_know_the_drill}
+```
+
+Flag:
+```
+pearl{babe_he's_not_home_U_know_the_drill}
+```
