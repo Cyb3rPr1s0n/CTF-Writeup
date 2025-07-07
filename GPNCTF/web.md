@@ -46,6 +46,7 @@ Vậy có 2 câu hỏi lớn ở đây:
 Vấn đề đó là FLask sử dụng Python với thư viện `urllib.parse` để phân tích URL trong khi bot sử dụng Puppeteer (Node.js) dẫn đến sự khác biệt trong các phân tích URL.
 
 [urllib.parse](https://github.com/python/cpython/blob/3.12/Lib/urllib/parse.py#L22) của Flask không hoàn toàn tuân thủ theo chuẩn RFC3986 còn Pupeteer của Nodejs thì có.
+
 ![image](https://hackmd.io/_uploads/Sy0At6CElg.png)
 
 Cho nên sẽ dẫn đến những sự khác biệt sau:
@@ -61,6 +62,7 @@ Khi đó URL được gửi cho bot sẽ là `https://webhook/`
 Phần chính của file `view_note`. title và content đã được truyền vào bằng Jinja2 template tuy nhiên phần src của ảnh không hề có dấu nháy để bao vào, khi đó chúng ta có thể chèn thêm 1 attribute bất kỳ vào ảnh.
 
 ![image](https://hackmd.io/_uploads/HJ1906ANgl.png)
+
 CSP rất chặt cho nên không thể chèn các event vào để kích hoạt Javascript.
 
 Tuy nhiên, con bot sẽ tạo note với flag ở cả content và title.
